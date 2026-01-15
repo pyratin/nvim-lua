@@ -106,7 +106,7 @@ vim.keymap.set(
 	{ desc = 'Next Diagnostic' }
 )
 
-vim.keymap.set('n', '<S-k>', '<Cmd>Lspsaga hover_doc<CR>', {
+vim.keymap.set('n', '<S-k>', vim.lsp.buf.hover, {
 	desc = 'Hover Doc'
 })
 
