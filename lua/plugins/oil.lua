@@ -1,9 +1,9 @@
 return {
-	'stevearc/oil.nvim',
-	dependencies = { 'nvim-tree/nvim-web-devicons' },
-	config = function()
-		require('oil').setup({
-			keymaps = {
+		'stevearc/oil.nvim',
+		dependencies = { 'nvim-tree/nvim-web-devicons' },
+		config = function()
+			require('oil').setup({
+				keymaps = {
 				['g?'] = {
 					'actions.show_help',
 					mode = 'n'
@@ -18,8 +18,11 @@ return {
 					opts = { horizontal = true }
 				},
 				['<C-t>'] = {
-					'actions.select',
-					opts = { tab = true }
+					function()
+						require('oil').select({ tab = true })
+						require('oil').close()
+					end,
+					mode = 'n'
 				},
 				['<C-p>'] = 'actions.preview',
 				['<C-c>'] = {
