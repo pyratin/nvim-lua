@@ -106,7 +106,7 @@ vim.keymap.set(
 	{ desc = 'Next Diagnostic' }
 )
 
-vim.keymap.set('n', '<S-k>', vim.lsp.buf.hover, {
+vim.keymap.set('n', '<S-k>', '<Cmd>Lspsaga hover_doc<CR>', {
 	desc = 'Hover Doc'
 })
 
@@ -155,4 +155,4 @@ vim.keymap.set(
 	{ desc = 'Format current file' }
 )
 
-vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
