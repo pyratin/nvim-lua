@@ -8,7 +8,7 @@ return {
 		completion = {
 			menu = { border = 'rounded' },
 			documentation = {
-				auto_show = true,
+				auto_show = false,
 				window = { border = 'rounded' }
 			},
 			accept = {
@@ -18,6 +18,9 @@ return {
 		},
 		sources = {
 			default = { 'lsp', 'path', 'buffer', 'codeium' },
+			per_filetype = {
+				oil = {}
+			},
 			providers = {
 				codeium = {
 					name = 'Codeium',
