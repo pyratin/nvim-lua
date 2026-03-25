@@ -26,3 +26,5 @@ vim.opt.virtualedit = 'block'
 vim.opt.inccommand = 'split'
 
 vim.opt.autoread = true
+
+vim.opt.backupcopy = "yes"
