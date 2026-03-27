@@ -35,24 +35,7 @@ return {
       desc = 'Toggle Gemini'
     },
 
-    -- Claude Chat
-    {
-      '<Leader>ac',
-      function()
-        Snacks.terminal.toggle('claude', {
-          win = { 
-            width = 120,
-            height = 30,
-            keys = {
-              q = { 'q', function() Snacks.terminal.toggle('claude') end, desc = 'Toggle Claude' },
-            }
-          }
-        })
-      end,
-      desc = 'Toggle Claude'
-    },
-
-    -- Smart Fullscreen Toggle (works for Gemini, Claude or General Terminal)
+    -- Smart Fullscreen Toggle (works for Gemini or General Terminal)
     {
       '<Leader>af',
       function()
@@ -68,12 +51,12 @@ return {
           end
         end
         
-        -- 2. Fallback to Gemini or Claude if no terminal is currently visible
+        -- 2. Fallback to Gemini if no terminal is currently visible
         if not term then
           for _, t in pairs(terms) do
             local cmd = t.cmd
             if type(cmd) == 'table' then cmd = cmd[1] end
-            if cmd == 'gemini' or cmd == 'claude' then
+            if cmd == 'gemini' then
               term = t
               break
             end
