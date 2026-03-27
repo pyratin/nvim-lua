@@ -15,6 +15,23 @@ return {
 	config = function()
 		local capabilities = require('blink.cmp').get_lsp_capabilities()
 
+		vim.lsp.config('eslint', {
+			capabilities = capabilities,
+			settings = {
+				workingDirectory = { mode = 'auto' },
+			},
+		})
+
+		vim.lsp.config('jsonls', {
+			capabilities = capabilities,
+			settings = {
+				json = {
+					schemas = require('schemastore').json.schemas(),
+					validate = { enable = true },
+				},
+			},
+		})
+
 		require('mason-tool-installer').setup({
 			ensure_installed = {
 				'lua-language-server',
@@ -50,25 +67,9 @@ return {
 						},
 					})
 				end,
-				['eslint'] = function()
-					require('lspconfig').eslint.setup({
-						capabilities = capabilities,
-						settings = {
-							workingDirectory = { mode = 'auto' },
-						},
-					})
-				end,
-				['jsonls'] = function()
-					require('lspconfig').jsonls.setup({
-						capabilities = capabilities,
-						settings = {
-							json = {
-								schemas = require('schemastore').json.schemas(),
-								validate = { enable = true },
-							},
-						},
-					})
-				end,
+				-- eslint and jsonls are handled by vim.lsp.config above
+				['eslint'] = function() end,
+				['jsonls'] = function() end,
 			},
 		})
 
