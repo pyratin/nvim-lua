@@ -13,6 +13,8 @@ return {
 		version = '*'
 	}, { 'b0o/schemastore.nvim' } },
 	config = function()
+		local capabilities = require('blink.cmp').get_lsp_capabilities()
+
 		require('mason-tool-installer').setup({
 			ensure_installed = {
 				'lua-language-server',
@@ -31,10 +33,26 @@ return {
 			automatic_installation = true,
 			handlers = {
 				function(server_name)
-					require('lspconfig')[server_name].setup({})
+					require('lspconfig')[server_name].setup({
+						capabilities = capabilities,
+					})
+				end,
+				['lua_ls'] = function()
+					require('lspconfig').lua_ls.setup({
+						capabilities = capabilities,
+						settings = {
+							Lua = {
+								completion = { callSnippet = 'Replace' },
+								diagnostics = { globals = { 'vim', 'Snacks' } },
+								workspace = { checkThirdParty = false },
+								telemetry = { enable = false },
+							},
+						},
+					})
 				end,
 				['eslint'] = function()
 					require('lspconfig').eslint.setup({
+						capabilities = capabilities,
 						settings = {
 							workingDirectory = { mode = 'auto' },
 						},
@@ -42,6 +60,7 @@ return {
 				end,
 				['jsonls'] = function()
 					require('lspconfig').jsonls.setup({
+						capabilities = capabilities,
 						settings = {
 							json = {
 								schemas = require('schemastore').json.schemas(),
