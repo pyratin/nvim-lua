@@ -27,26 +27,30 @@ return {
 			}
 		})
 
-		vim.lsp.config('eslint', { root_dir = function(bufnr, on_dir)
-			local eslint_configs = { 'eslint.config.mjs', 'eslint.config.js' }
-			local root = vim.fs.root(bufnr, eslint_configs)
-			if root then
-				on_dir(root)
-			end
-		end })
-
-		vim.lsp.config('jsonls', {
-			settings = {
-				json = {
-					schemas = require('schemastore').json.schemas(),
-					validate = { enable = true }
-				}
-			}
-		})
-
 		require('mason-lspconfig').setup({
 			automatic_installation = true,
-			automatic_enable = true
+			handlers = {
+				function(server_name)
+					require('lspconfig')[server_name].setup({})
+				end,
+				['eslint'] = function()
+					require('lspconfig').eslint.setup({
+						settings = {
+							workingDirectory = { mode = 'auto' },
+						},
+					})
+				end,
+				['jsonls'] = function()
+					require('lspconfig').jsonls.setup({
+						settings = {
+							json = {
+								schemas = require('schemastore').json.schemas(),
+								validate = { enable = true },
+							},
+						},
+					})
+				end,
+			},
 		})
 
 		vim.diagnostic.config({
