@@ -18,22 +18,6 @@ return {
     { '<Leader>-', function() Snacks.terminal.toggle() end, desc = 'Toggle Terminal' },
     { '<Leader>-', function() Snacks.terminal.toggle() end, mode = 't', desc = 'Toggle Terminal' },
 
-    -- Latest Image
-    {
-      '<Leader>il',
-      function()
-        local image = vim.fn.system('ls -t ~/Pictures | head -n 1'):gsub('\n', '')
-        if image ~= '' then
-          Snacks.terminal.toggle('ls -l ~/Pictures/"' .. image .. '" && echo "" && file ~/Pictures/"' .. image .. '" && read', {
-            win = { position = 'float', border = 'rounded' }
-          })
-        else
-          vim.notify('No images found in ~/Pictures', vim.log.levels.WARN)
-        end
-      end,
-      desc = 'Show Latest Image Info'
-    },
-
     -- Gemini Chat
     {
       '<Leader>ag',
