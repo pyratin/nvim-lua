@@ -27,6 +27,13 @@ return {
 			}
 		})
 
+		vim.lsp.config('cssls', {
+			settings = {
+				css = { validate = false },
+				scss = { validate = false }
+			}
+		})
+
 		vim.lsp.config('jsonls', {
 			settings = {
 				json = {
