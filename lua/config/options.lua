@@ -27,4 +27,8 @@ vim.opt.inccommand = 'split'
 
 vim.opt.autoread = true
 
-vim.opt.backupcopy = "yes"
+vim.opt.backupcopy = 'yes'
+
+vim.filetype.add({
+	extension = { ejs = 'html' }
+})
