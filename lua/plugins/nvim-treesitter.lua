@@ -1,9 +1,11 @@
 return {
 	'nvim-treesitter/nvim-treesitter',
-	branch = 'master',
-	dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
+	branch = 'main',
+	dependencies = {
+		{ 'nvim-treesitter/nvim-treesitter-textobjects', branch = 'main' }
+	},
 	config = function()
-		require'nvim-treesitter.configs'.setup({
+		require('nvim-treesitter').setup({
 			ensure_installed = {
 				'c',
 				'lua',
@@ -16,7 +18,7 @@ return {
 			sync_install = false,
 			auto_install = true,
 			highlight = { enable = true },
-			indent = { enable = false },
+			indent = { enable = true },
 			incremental_selection = {
 				enable = true,
 				keymaps = {
