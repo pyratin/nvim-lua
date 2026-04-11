@@ -22,8 +22,17 @@ return {
 				'emmet-language-server',
 				'html-lsp',
 				'css-lsp',
-				'stylelint-lsp',
+				'stylelint-language-server',
 				'json-lsp'
+			}
+		})
+
+		vim.lsp.config('stylelint_lsp', {
+			settings = {
+				stylelint = {
+					validate = { 'css', 'scss' },
+					snippet = { 'css', 'scss' }
+				}
 			}
 		})
 
