@@ -13,9 +13,25 @@ return {
 			}
 		}
 	},
-	keys = { -- Gemini Chat
-	{
-		'<Leader>ag',
+	keys = {
+		{
+			'<Leader>-',
+			function()
+				Snacks.terminal.toggle()
+			end,
+			desc = 'Toggle Terminal'
+		},
+		{
+			'<Leader>-',
+			function()
+				Snacks.terminal.toggle()
+			end,
+			mode = 't',
+			desc = 'Toggle Terminal'
+		},
+		-- Gemini Chat
+		{
+			'<Leader>ag',
 		function()
 			Snacks.terminal.toggle('gemini', {
 				win = {
