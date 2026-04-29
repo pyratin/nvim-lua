@@ -11,8 +11,48 @@ return {
 	}, {
 		'WhoIsSethDaniel/mason-tool-installer.nvim',
 		version = '*'
-	}, { 'b0o/schemastore.nvim' }, { 'saghen/blink.cmp' } },
+	}, { 'b0o/schemastore.nvim' } },
 	config = function()
+		local lspconfig = require('lspconfig')
+
+		-- Use the reliable setup_handlers pattern
+		require('mason-lspconfig').setup_handlers({
+			-- Default handler
+			function(server_name)
+				lspconfig[server_name].setup({})
+			end,
+			-- Dedicated handlers for specific servers
+			jsonls = function()
+				lspconfig.jsonls.setup({
+					settings = {
+						json = {
+							schemas = require('schemastore').json.schemas(),
+							validate = { enable = true }
+						}
+					}
+				})
+			end,
+			cssls = function()
+				lspconfig.cssls.setup({
+					settings = {
+						css = { validate = false },
+						scss = { validate = false }
+					}
+				})
+			end,
+			stylelint_lsp = function()
+				lspconfig.stylelint_lsp.setup({
+					settings = {
+						stylelint = {
+							validate = { 'css', 'scss' },
+							snippet = { 'css', 'scss' }
+						}
+					}
+				})
+			end
+		})
+
+		-- Setup Mason Tool Installer
 		require('mason-tool-installer').setup({
 			ensure_installed = {
 				'lua-language-server',
@@ -27,36 +67,10 @@ return {
 			}
 		})
 
-		vim.lsp.config('stylelint_lsp', {
-			settings = {
-				stylelint = {
-					validate = { 'css', 'scss' },
-					snippet = { 'css', 'scss' }
-				}
-			}
-		})
+		-- Setup Mason-LSPConfig
+		require('mason-lspconfig').setup({ automatic_installation = true })
 
-		vim.lsp.config('cssls', {
-			settings = {
-				css = { validate = false },
-				scss = { validate = false }
-			}
-		})
-
-		vim.lsp.config('jsonls', {
-			settings = {
-				json = {
-					schemas = require('schemastore').json.schemas(),
-					validate = { enable = true }
-				}
-			}
-		})
-
-		require('mason-lspconfig').setup({
-			automatic_installation = true,
-			automatic_enable = true
-		})
-
+		-- Global Diagnostic Configuration
 		vim.diagnostic.config({
 			severity_sort = true,
 			float = {

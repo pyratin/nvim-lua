@@ -1,5 +1,6 @@
 return {
 	'saghen/blink.cmp',
+	lazy = false,
 	dependencies = { 'Exafunction/windsurf.nvim' },
 	version = '1.*',
 	opts = {
@@ -11,19 +12,20 @@ return {
 				auto_show = false,
 				window = { border = 'rounded' }
 			},
-			accept = {
-				auto_brackets = { enabled = false }
-			},
-			trigger = { show_on_trigger_character = false }
+			trigger = {
+				show_on_trigger_character = true,
+				show_on_insert_on_trigger_character = true
+			}
 		},
 		sources = {
-			default = { 'lsp', 'path', 'buffer', 'codeium' },
-			per_filetype = {
-				oil = {}
-			},
+			default = { 'lsp', 'path', 'snippets', 'buffer', 'codeium' },
 			providers = {
+				lsp = {
+					timeout_ms = 5000,
+					score_offset = 100
+				},
 				codeium = {
-					name = 'Codeium',
+					name = 'Windsurf',
 					module = 'codeium.blink',
 					async = true,
 					timeout_ms = 5000,

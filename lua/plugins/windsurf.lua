@@ -4,7 +4,7 @@ return {
 	config = function()
 		require('codeium').setup({
 			enable_local_search = false,
-			enable_index_service = false,
+			enable_index_service = false
 		})
 	end
 }
