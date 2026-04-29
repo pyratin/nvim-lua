@@ -11,7 +11,7 @@ return {
 	}, {
 		'WhoIsSethDaniel/mason-tool-installer.nvim',
 		version = '*'
-	}, { 'b0o/schemastore.nvim' } },
+	}, { 'b0o/schemastore.nvim' }, { 'saghen/blink.cmp' } },
 	config = function()
 		require('mason-tool-installer').setup({
 			ensure_installed = {

@@ -1,6 +1,6 @@
 return {
 	'saghen/blink.cmp',
-	dependencies = { 'Exafunction/codeium.nvim' },
+	dependencies = { 'Exafunction/windsurf.nvim' },
 	version = '1.*',
 	opts = {
 		keymap = { preset = 'enter' },
@@ -26,6 +26,7 @@ return {
 					name = 'Codeium',
 					module = 'codeium.blink',
 					async = true,
+					timeout_ms = 5000,
 					score_offset = -100
 				}
 			}
