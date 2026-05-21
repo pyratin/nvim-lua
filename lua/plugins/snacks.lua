@@ -33,7 +33,7 @@ return {
 		{
 			'<Leader>ag',
 		function()
-			Snacks.terminal.toggle('gemini', {
+			Snacks.terminal.toggle('agy', {
 				win = {
 					width = 120,
 					height = 30,
@@ -41,7 +41,7 @@ return {
 						q = {
 							'q',
 							function()
-								Snacks.terminal.toggle('gemini')
+								Snacks.terminal.toggle('agy')
 							end,
 							desc = 'Toggle Gemini'
 						}
