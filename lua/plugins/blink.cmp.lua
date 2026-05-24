@@ -1,6 +1,6 @@
 return {
 	'saghen/blink.cmp',
-	dependencies = { 'Exafunction/codeium.nvim' },
+	dependencies = { 'Exafunction/windsurf.nvim' },
 	version = '1.*',
 	opts = {
 		keymap = { preset = 'enter' },
@@ -31,7 +31,10 @@ return {
 					module = 'codeium.blink',
 					async = true,
 					timeout_ms = 5000,
-					score_offset = -100
+					score_offset = -100,
+					should_show_items = function(ctx)
+						return vim.api.nvim_buf_get_name(ctx.bufnr) ~= ""
+					end
 				}
 			}
 		},
