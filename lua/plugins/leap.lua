@@ -1,6 +1,7 @@
 return {
 	'leap.nvim',
-	url = 'https://codeberg.org/andyg/leap.nvim.git',
+	url = 'https://git.disroot.org/andyg/leap.nvim.git',
+	pin = true,
 	config = function()
 		-- Set up default keymaps explicitly
 		vim.keymap.set({ 'n', 'x', 'o' }, 's', '<Plug>(leap-forward)')
