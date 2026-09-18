@@ -132,6 +132,10 @@ vim.keymap.set('n', '<S-k>', '<Cmd>Lspsaga hover_doc<CR>', {
 	desc = 'Hover Doc'
 })
 
+vim.keymap.set('n', 'gl', '<Cmd>Lspsaga show_line_diagnostics<CR>', {
+	desc = 'Show Line Diagnostics'
+})
+
 vim.keymap.set(
 	{ 'n', 'v' },
 	'<C-a>',
