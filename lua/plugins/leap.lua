@@ -8,6 +8,9 @@ return {
 		-- and instead shows a label (nav) for every match, including the first one.
 		require('leap').opts.safe_labels = ''
 
+		-- Disable bracket equivalence classes to only match exactly what is typed
+		require('leap').opts.equivalence_classes = { ' \t\r\n', '\'"`' }
+
 		-- Set up default keymaps explicitly
 		vim.keymap.set({ 'n', 'x', 'o' }, 's', '<Plug>(leap-forward)')
 		vim.keymap.set({ 'n', 'x', 'o' }, 'S', '<Plug>(leap-backward)')
