@@ -8,8 +8,8 @@ return {
 			win = {
 				position = 'float',
 				border = 'rounded',
-				width = 120,
-				height = 30
+				width = 0,
+				height = 0
 			}
 		}
 	},
@@ -35,8 +35,8 @@ return {
 		function()
 			Snacks.terminal.toggle('agy', {
 				win = {
-					width = 120,
-					height = 30,
+					width = 0,
+					height = 0,
 					keys = {
 						q = {
 							'q',
