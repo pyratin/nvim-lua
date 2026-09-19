@@ -132,7 +132,7 @@ vim.keymap.set('n', '<S-k>', '<Cmd>Lspsaga hover_doc<CR>', {
 	desc = 'Hover Doc'
 })
 
-vim.keymap.set('n', 'gl', '<Cmd>Lspsaga show_line_diagnostics<CR>', {
+vim.keymap.set('n', 'gl', '<Cmd>Lspsaga show_cursor_diagnostics ++unfocus<CR>', {
 	desc = 'Show Line Diagnostics'
 })
 
