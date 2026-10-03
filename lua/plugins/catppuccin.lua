@@ -4,6 +4,11 @@ return {
   priority = 1000,
   config = function()
     require("catppuccin").setup({
+      custom_highlights = function(colors)
+        return {
+          SnippetTabstop = { bg = "none" },
+        }
+      end,
       lsp_styles = {
         underlines = {
           errors = { "undercurl" },
