@@ -8,12 +8,16 @@ return {
 		require('nvim-treesitter').setup({
 			ensure_installed = {
 				'javascript',
-				'typescript'
+				'typescript',
+				'tsx',
+				'html',
+				'css'
 			},
 			sync_install = false,
 			auto_install = true,
 			highlight = { enable = true },
 			indent = { enable = true },
+			matchup = { enable = true },
 			incremental_selection = {
 				enable = true,
 				keymaps = {
