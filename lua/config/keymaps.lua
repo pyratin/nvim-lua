@@ -75,34 +75,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 			'[G]oto [I]mplementation'
 		)
 
-		map(
-			'gd',
-			function()
-				vim.lsp.buf.definition({ on_list = function(options)
-					if not options.items or #options.items == 0 then return end
-					if #options.items > 1 then
-						vim.notify(
-							'Multiple items found, opening first one',
-							vim.log.levels.WARN
-						)
-					end
-
-					vim.cmd('tab split')
-					local item = options.items[1]
-					if item.bufnr and item.bufnr > 0 then
-						vim.cmd('buffer ' .. item.bufnr)
-					elseif item.filename and item.filename ~= '' then
-						vim.cmd('edit ' .. vim.fn.fnameescape(item.filename))
-					end
-					pcall(vim.api.nvim_win_set_cursor, 0, {
-						item.lnum,
-						math.max(0, item.col - 1)
-					})
-					vim.cmd('normal! zz')
-				end })
-			end,
-			'[G]oto [D]efinition'
-		)
+		map('gd', require('fzf-lua').lsp_definitions, '[G]oto [D]efinition')
 
 		map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
