@@ -1,9 +1,18 @@
 return {
 	'saghen/blink.cmp',
-	dependencies = { 'Exafunction/windsurf.nvim' },
+	dependencies = {
+		'milanglacier/minuet-ai.nvim',
+	},
 	version = '1.*',
 	opts = {
-		keymap = { preset = 'enter' },
+		keymap = {
+			preset = 'enter',
+			['<A-y>'] = {
+				function(cmp)
+					cmp.show({ providers = { 'minuet' } })
+				end,
+			},
+		},
 		appearance = { nerd_font_variant = 'mono' },
 		completion = {
 			menu = { border = 'rounded' },
@@ -17,7 +26,7 @@ return {
 			trigger = { show_on_trigger_character = false }
 		},
 		sources = {
-			default = { 'lsp', 'path', 'buffer', 'codeium' },
+			default = { 'lsp', 'path', 'buffer' },
 			per_filetype = {
 				oil = {}
 			},
@@ -26,15 +35,10 @@ return {
 					timeout_ms = 5000,
 					score_offset = 100
 				},
-				codeium = {
-					name = 'Codeium',
-					module = 'codeium.blink',
-					async = true,
-					timeout_ms = 5000,
-					score_offset = -100,
-					should_show_items = function(ctx)
-						return vim.api.nvim_buf_get_name(ctx.bufnr) ~= ""
-					end
+				minuet = {
+					name = 'minuet',
+					module = 'minuet.blink',
+					score_offset = 100
 				}
 			}
 		},
