@@ -1,17 +1,15 @@
 return {
 	'saghen/blink.cmp',
-	dependencies = {
-		'milanglacier/minuet-ai.nvim',
-	},
+	dependencies = { 'milanglacier/minuet-ai.nvim' },
 	version = '1.*',
 	opts = {
 		keymap = {
 			preset = 'enter',
-			['<A-y>'] = {
-				function(cmp)
-					cmp.show({ providers = { 'minuet' } })
-				end,
-			},
+			['<A-y>'] = { function(cmp)
+				cmp.show({
+					providers = { 'minuet' }
+				})
+			end }
 		},
 		appearance = { nerd_font_variant = 'mono' },
 		completion = {

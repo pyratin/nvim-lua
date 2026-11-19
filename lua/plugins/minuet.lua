@@ -5,6 +5,11 @@ return {
 		local minuet_config = require('minuet.config')
 		local chat_input =
 			vim.deepcopy(minuet_config.default_chat_input_prefix_first)
+		local default_system =
+			vim.deepcopy(minuet_config.default_system_prefix_first)
+
+		default_system.guidelines =
+			default_system.guidelines .. '\n- You are an inline single-word completion engine. Return ONLY the single word or identifier that positionally best fits at cursorPosition.' .. '\n- Preserve exact pluralization and casing from the surrounding context or referenced names.' .. '\n- Stop immediately after the word. Do not output punctuation, colons, values, or subsequent tokens.'
 
 		-- Enrich context with package.json dependencies when available
 		chat_input.language = function(before, after, opts)
@@ -48,14 +53,16 @@ return {
 			context_ratio = 0.75,
 			throttle = 1000,
 			debounce = 0,
-			request_timeout = 5,
+			request_timeout = 8,
 			notify = 'warn',
-			add_single_line_entry = true,
+			add_single_line_entry = false,
 			provider_options = {
 				gemini = {
 					model = 'gemini-3.5-flash-lite',
 					api_key = 'GEMINI_API_KEY',
 					stream = false,
+					system = default_system,
+					few_shots = {},
 					chat_input = chat_input,
 					optional = {
 						generationConfig = {
