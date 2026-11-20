@@ -49,11 +49,11 @@ return {
 		require('minuet').setup({
 			provider = 'gemini',
 			n_completions = 3,
-			context_window = 16000,
+			context_window = 4096,
 			context_ratio = 0.75,
 			throttle = 1000,
 			debounce = 0,
-			request_timeout = 8,
+			request_timeout = 15,
 			notify = 'warn',
 			add_single_line_entry = false,
 			provider_options = {
